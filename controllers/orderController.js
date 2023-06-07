@@ -15,7 +15,7 @@ exports.AddOrder = async (req, res) => {
         res.status(201).json(data);
       });
     } else {
-      res.status(400).json({ msg: "User doesn't exist for this user_id." });
+      res.status(400).json({ error: "User doesn't exist for this user_id." });
     }
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -28,6 +28,6 @@ exports.GetUserOrders = async (req, res) => {
     const orders = await Order.find({ user_id: userId });
     res.status(200).json(orders);
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    res.status(404).json({ error: err.message });
   }
 };
