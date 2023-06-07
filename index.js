@@ -9,6 +9,7 @@ const app = express();
 
 app.use(express.json());
 
+console.log(process.env.MONGO_URL);
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
 app.get("/ping", (req, res) => {
   res.send("pong 🏓");
 });
-app.get('/favicon.ico', (req, res) => res.status(204));
+app.get("/favicon.ico", (req, res) => res.status(204));
 app.use("/api", userRoutes);
 app.use("/api", orderRoutes);
 
