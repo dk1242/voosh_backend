@@ -19,11 +19,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.send("Express JS on Vercel");
-});
-
-app.get("/ping", (req, res) => {
-  res.send("pong 🏓");
+  res.send("Hello Voosh !!!");
 });
 app.get("/favicon.ico", (req, res) => res.status(204));
 app.use("/api", userRoutes);
