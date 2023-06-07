@@ -14,7 +14,7 @@ exports.AddNewUser = async (req, res) => {
       password: passwordHash,
     });
     const savedUser = await newUser.save();
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET);
     delete savedUser.password;
     res.status(201).json({ token, user: savedUser });
   } catch (err) {
