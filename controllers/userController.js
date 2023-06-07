@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
 exports.AddNewUser = async (req, res) => {
@@ -14,7 +14,9 @@ exports.AddNewUser = async (req, res) => {
       password: passwordHash,
     });
     const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    delete savedUser.password;
+    res.status(201).json({ token, user: savedUser });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
